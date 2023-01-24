@@ -16,7 +16,7 @@ df = pd.DataFrame({
 })
 locationID_hourly = requests.get("http://datapoint.metoffice.gov.uk/public/data/val/wxobs/all/json/sitelist?key=0d75cc84-e06a-4632-8bd2-b1cf041e7b09")
 
-df1 = pd.read_csv("locationID.csv")
+df1 = pd.read_csv("~/locationID.csv")
 df1 = df1.fillna("0")
 
 
