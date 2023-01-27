@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import requests
-file = open("locationID.csv", "r")
+
 x1 = []
 y1 = []
 
