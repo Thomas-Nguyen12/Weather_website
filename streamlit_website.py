@@ -18,7 +18,7 @@ fig = go.Figure(data=go.Choropleth(
     locations=emission["text"],
     z=emission["value"].astype(float),
     locationmode="country names",
-    colorscale="Blues",
+    colorscale="thermal",
     colorbar_title="emission",
     text=emission["text"] # Hover text
 ))
