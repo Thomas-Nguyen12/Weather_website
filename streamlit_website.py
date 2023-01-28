@@ -7,6 +7,29 @@ import requests
 x1 = []
 y1 = []
 
+import plotly.graph_objects as go
+emission = pd.read_csv("greenhouse.csv")
+emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
+emission["text"] = "Location: " + emission["country"]
+
+
+
+fig = go.Figure(data=go.Choropleth(
+    locations=emission["text"],
+    z=emission["value"].astype(float),
+    locationmode="country names",
+    colorscale="Blues",
+    colorbar_title="emission",
+    text=emission["text"] # Hover text
+))
+
+fig.update_layout(
+    title_text="Greenhouse emission",
+    geo_scope="world",
+    
+)
+
+
 for i in range(-10, 11):
     x1.append(i)
     y1.append(i**2)
@@ -116,6 +139,9 @@ with st.container():
         st.title("Forecast Data for Eltham, UK")
         st.dataframe(forecast_df)
 
+with st.container():
+    st.plotly_chart(fig, use_container_width=True)
 
+    
         
     
