@@ -14,10 +14,10 @@ df = pd.DataFrame({
     "x": x1,
     "y": y1
 })
-locationID_hourly = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&aqi=no") 
-forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&days=1&aqi=yes&alerts=yes")
+current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes") 
+forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&days=5&aqi=yes&alerts=yes")
 
-print ("code: {}".format(locationID_hourly.status_code))
+print ("code: {}".format(current.status_code))
 
 
 
@@ -25,10 +25,10 @@ print ("code: {}".format(locationID_hourly.status_code))
 
 
 print ("\n")
-print (locationID_hourly.text)
+print (current.text)
 
 file = open("3_hour_forecast.json", "w")
-file.write(locationID_hourly.text)
+file.write(current.text)
 file.close()
 f1 = pd.read_json("3_hour_forecast.json", "r")
 
@@ -105,7 +105,7 @@ forecast_file.close()
 forecast_df = pd.read_json("forecast.json")
 forecast_df = forecast_df.fillna("0")
 
-
+weather_forecast = forecast_df["forecast"]["forecastday"]
 with st.container():
     left_column, right_column = st.columns(2)
     
@@ -115,13 +115,7 @@ with st.container():
     with right_column:
         st.title("Forecast Data for Eltham, UK")
         st.dataframe(forecast_df)
-        
-    
-    
-    
-    
-    
-    
+
 
         
-        
+    
