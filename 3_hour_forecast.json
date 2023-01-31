@@ -1,1 +1,5 @@
-{"location":{"name":"London","region":"City of London, Greater London","country":"United Kingdom","lat":51.52,"lon":-0.11,"tz_id":"Europe/London","localtime_epoch":1675083466,"localtime":"2023-01-30 12:57"},"current":{"last_updated_epoch":1675082700,"last_updated":"2023-01-30 12:45","temp_c":9.0,"temp_f":48.2,"is_day":1,"condition":{"text":"Sunny","icon":"//cdn.weatherapi.com/weather/64x64/day/113.png","code":1000},"wind_mph":12.5,"wind_kph":20.2,"wind_degree":290,"wind_dir":"WNW","pressure_mb":1026.0,"pressure_in":30.3,"precip_mm":0.0,"precip_in":0.0,"humidity":57,"cloud":0,"feelslike_c":6.0,"feelslike_f":42.8,"vis_km":10.0,"vis_miles":6.0,"uv":2.0,"gust_mph":15.7,"gust_kph":25.2,"air_quality":{"co":223.60000610351562,"no2":6.699999809265137,"o3":68.69999694824219,"so2":4.099999904632568,"pm2_5":1.7000000476837158,"pm10":4.5,"us-epa-index":1,"gb-defra-index":1}}}
+<html>
+<head>
+<meta http-equiv='refresh' content='1; url=http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes&cmd=redirect&arubalp=12345'>
+</head>
+</html>
