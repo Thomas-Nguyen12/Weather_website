@@ -27,7 +27,7 @@ from sklearn import svm
 X = emission.drop(["country", "category", "year", "text"], axis=1) # X = emission.value
 y = emission["country"].values.reshape(-1,1)
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
-model = svm.SVC()
+model = svm.SVC(C=0.02, gamma=0.06)
 model.fit(X_train, Y_train)
 pred = model.predict(X_test)
 
@@ -165,7 +165,7 @@ with st.container():
 with st.container():
     st.plotly_chart(fig, use_container_width=True)
 with st.container():
-    st.write("The accuracy for this A.I model is:")
+    st.write("The accuracy for this A.I model is: ")
     st.write("{} %".format(model.score(Y_test, pred) * 100))
     
     st.write("Enter a Greenhouse emission value")
