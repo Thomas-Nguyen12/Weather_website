@@ -1,11 +1,6 @@
-import smtplib, ssl
-
-
-port = 465
-
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context,) as server:
-    server.login("captaintn3612@gmail.com", "thomas2002")
+email_sender = "captaintn3612@gmail.com"
+email_password = "thomas2002"
+email_receiver = "Thomas.Nguyen@uea.ac.uk"
 
 
 

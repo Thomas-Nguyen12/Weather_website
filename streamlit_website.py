@@ -9,38 +9,25 @@ import numpy as np
 from scipy.stats import *
 import seaborn as sns
 import statsmodels.api as sm
-from sklearn import linear_model
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-from sklearn import metrics
-from sklearn.metrics import r2_score
-from catboost import CatBoostRegressor
-import matplotlib.pyplot as plt
-import os
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import LabelEncoder
 
-from sklearn.neighbors import KNeighborsClassifier
 x1 = []
 y1 = []
 
 import plotly.graph_objects as go
-
+from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 emission = pd.read_csv("greenhouse.csv")
 emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
 emission["text"] = "Location: " + emission["country"]
+unique = emission.country.unique()
 
-emission["country_encoded"] = le.fit_transform(emission["country"])
-
-
-X = emission.drop(["country", "year", "category", "country_encoded"], axis=1)
-y = emission["country_encoded"].values.reshape(-1, 1)
-
+emission["country"] = le.fit_transform(emission["country"])
+from sklearn import svm
+X = emission.drop(["country", "category", "year", "text"], axis=1) # X = emission.value
+y = emission["country"].values.reshape(-1,1)
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
-model = KNeighborsClassifier(n_neighbors=1)
+model = svm.SVC()
 model.fit(X_train, Y_train)
 pred = model.predict(X_test)
 
@@ -178,10 +165,24 @@ with st.container():
 with st.container():
     st.plotly_chart(fig, use_container_width=True)
 with st.container():
+    st.write("The accuracy for this A.I model is:")
+    st.write("{} %".format(model.score(Y_test, pred) * 100))
+    
     st.write("Enter a Greenhouse emission value")
-    title = st.text_input("Enter your value", type=int, autocomplete="19313")
+    title = st.text_input("Enter your value for a prediction", autocomplete="19313")
     
     if st.button("Enter"):
-        title = pd.DataFrame(title).values.reshape(-1,1)
-        st.write("Prediction: {}".format(model.predict(title)))
+        
+        # I need to reshape "title" by converting to a pandas DataFrame
+        title = int(title)
+        title = np.array(title)
+        title = np.reshape(title, (-1,1))
+        
+        
+        st.write("Prediction: {}".format(model.predict(title))) # Will return a number ID
+        
+        st.write("Country associated with this ID: " + unique[model.predict(title)])
+        # Improper dataframe calling error
+        
+        
         

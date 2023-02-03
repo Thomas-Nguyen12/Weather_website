@@ -1,5 +1,1 @@
-<html>
-<head>
-<meta http-equiv='refresh' content='1; url=http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes&cmd=redirect&arubalp=12345'>
-</head>
-</html>
+{"location":{"name":"London","region":"City of London, Greater London","country":"United Kingdom","lat":51.52,"lon":-0.11,"tz_id":"Europe/London","localtime_epoch":1675446882,"localtime":"2023-02-03 17:54"},"current":{"last_updated_epoch":1675446300,"last_updated":"2023-02-03 17:45","temp_c":11.0,"temp_f":51.8,"is_day":0,"condition":{"text":"Overcast","icon":"//cdn.weatherapi.com/weather/64x64/night/122.png","code":1009},"wind_mph":13.6,"wind_kph":22.0,"wind_degree":270,"wind_dir":"W","pressure_mb":1033.0,"pressure_in":30.5,"precip_mm":0.0,"precip_in":0.0,"humidity":76,"cloud":100,"feelslike_c":9.6,"feelslike_f":49.3,"vis_km":10.0,"vis_miles":6.0,"uv":1.0,"gust_mph":9.2,"gust_kph":14.8,"air_quality":{"co":250.3000030517578,"no2":31.200000762939453,"o3":42.20000076293945,"so2":8.5,"pm2_5":2.5,"pm10":3.9000000953674316,"us-epa-index":1,"gb-defra-index":1}}}
