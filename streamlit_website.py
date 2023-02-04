@@ -183,6 +183,3 @@ with st.container():
         
         st.write("Country associated with this ID: " + unique[model.predict(title)])
         # Improper dataframe calling error
-        
-        
-        
