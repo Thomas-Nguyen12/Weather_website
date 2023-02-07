@@ -10,7 +10,7 @@ from scipy.stats import *
 import seaborn as sns
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
-
+from bokeh.plotting import figure
 x1 = []
 y1 = []
 
@@ -152,6 +152,8 @@ forecast_df = pd.read_json("forecast.json")
 forecast_df = forecast_df.fillna("0")
 
 weather_forecast = forecast_df["forecast"]["forecastday"]
+weather_forecast = pd.DataFrame(weather_forecast)
+
 with st.container():
     left_column, right_column = st.columns(2)
     
@@ -162,6 +164,9 @@ with st.container():
         st.title("Forecast Data for Eltham, UK")
         st.dataframe(forecast_df)
 
+with st.container():
+    st.title("Forecast data for Eltham, London, UK")
+    st.dataframe(weather_forecast, use_container_width=True)
 with st.container():
     st.plotly_chart(fig, use_container_width=True)
 with st.container():
@@ -183,3 +188,35 @@ with st.container():
         
         st.write("Country associated with this ID: " + unique[model.predict(title)])
         # Improper dataframe calling error
+        
+with st.container():
+    st.title("Prototype slider estimate")
+    st.write("The accuracy for this model is: ".format(model.score(Y_test, pred) * 100))
+    new_input = st.slider(
+        "Slide for an Estimate", 0, 7422208, 1000
+    )
+    new_input = int(new_input)
+    new_input = np.array(new_input)
+    new_input = np.reshape(new_input, (-1, 1))
+    st.write(f"Prediction ID: {model.predict(new_input)}")
+    st.write(f"Country Prediction: {unique[model.predict(new_input)]}")
+with st.container():
+    option = st.selectbox(
+        "Which Country would You like to visualize?",
+        unique,
+        
+    ) 
+    st.write("Current Option: " + option)
+    if st.button("Enter Option"):
+        selection = emission[emission.country==option]
+        new = pd.DataFrame(selection.groupby(["year"])["value"].mean())
+
+        new["Year"] = [i for i in new.index]
+        
+
+        
+        
+        st.line_chart(data=new, x="Year", y="value", use_container_width=True)
+        
+        
+# I can add a checkbox to visualise graphs for greenhosue emission for each country
