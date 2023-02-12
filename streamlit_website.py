@@ -216,7 +216,7 @@ with st.container():
 
         
         
-        st.line_chart(data=new, x="Year", y="value", use_container_width=True)
+        st.line_chart(data=new, x="Year", y="value")
         
         
 # I can add a checkbox to visualise graphs for greenhosue emission for each country
