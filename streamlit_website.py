@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import requests
-
+import pylab
 
 import numpy as np
 from scipy.stats import *
@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from bokeh.plotting import figure
 x1 = []
 y1 = []
-
+sns.set()
 import plotly.graph_objects as go
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
@@ -207,16 +207,18 @@ with st.container():
         
     ) 
     st.write("Current Option: " + option)
-    if st.button("Enter Option"):
-        selection = emission[emission.country==option]
-        new = pd.DataFrame(selection.groupby(["year"])["value"].mean())
-
-        new["Year"] = [i for i in new.index]
+    selection = emission[emission.country == option]
+    selection = selection.groupby(["year"])["value"].mean()
+    new = pd.DataFrame(selection)
+    new["year"] = [i for i in new.index]
+    fig, ax = plt.subplots()
+    ax.scatter(new.year, new.value)
+    ax.set_xlabel("Year")
+    ax.set_ylabel("value")
+    ax.set_title("Mean Greenhouse emission for " + option)
+    st.pyplot(fig.figure)
+    plt.show()
         
-
-        
-        
-        st.line_chart(data=new, x="Year", y="value")
         
         
 # I can add a checkbox to visualise graphs for greenhosue emission for each country
