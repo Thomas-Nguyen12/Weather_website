@@ -196,21 +196,44 @@ with st.container():
         
     ) 
     st.write("Current Option: " + option)
-selection = emission[emission.country == f"{option}"]
-selection = selection.groupby(["year"])["value"].mean()
-new = pd.DataFrame(selection)
+
+hopefully_works = pd.read_csv("greenhouse.csv")
+selection = hopefully_works[hopefully_works.country_or_area == option]
+
+
+new = selection.groupby(["year"])["value"].mean()
+
 new["year"] = [i for i in new.index]
-fig1, o = plt.subplots()
-fig1.suptitle("title")
-o.plot(new.year, new.value)
-o.set_xlabel("Year")
-o.set_ylabel("value")
-o.set_title("Mean Greenhouse emission for " + option)
+
+st.dataframe(new)
+new1 = pd.DataFrame(new)
+new1["Year"] = [i for i in new1.index] 
+
+st.write("Mean greenhouse emission per year for " + option)
+from bokeh.plotting import figure
+
+
+p = figure(
+    title='greenhouse emission for ' + option,
+    x_axis_label='year',
+    y_axis_label='value')
+
+p.line(new1.Year, new1.value, legend_label='Trend', line_width=2)
+
+
+
+st.bokeh_chart(p, use_container_width=True)
+
 
 with st.container():
-    st.pyplot(fig1, clear_figure=False)
-    
-        
-        
-        
-# I can add a checkbox to visualise graphs for greenhosue emission for each country
+    a = figure(
+        title="greenhouse emission types for " + option,
+        x_axis_label="year",
+        y_axis_label="value",
+    )
+    a.scatter(selection.year, selection.value, legend_label="category", line_width=2)
+    st.bokeh_chart(a, use_container_width=True)
+
+## Next, I will add a more advanced plot
+## Which will show mean greenhouse emissions in a country for each category
+
