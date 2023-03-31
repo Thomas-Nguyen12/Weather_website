@@ -167,31 +167,20 @@ with st.container():
 with st.container():
     st.title("Forecast data for Eltham, London, UK")
     st.dataframe(weather_forecast, use_container_width=True)
+    ##########################################################
+    #########################################################
+    
+    astro = weather_forecast.astro 
+    
+    
 with st.container():
     st.plotly_chart(fig, use_container_width=True)
-with st.container():
-    st.write("The accuracy for this A.I model is: ")
-    st.write("{} %".format(model.score(Y_test, pred) * 100))
-    
-    st.write("Enter a Greenhouse emission value")
-    title = st.text_input("Enter your value for a prediction", autocomplete="19313")
-    
-    if st.button("Enter"):
-        
-        # I need to reshape "title" by converting to a pandas DataFrame
-        title = int(title)
-        title = np.array(title)
-        title = np.reshape(title, (-1,1))
-        
-        
-        st.write("Prediction: {}".format(model.predict(title))) # Will return a number ID
-        
-        st.write("Country associated with this ID: " + unique[model.predict(title)])
-        # Improper dataframe calling error
         
 with st.container():
     st.title("Prototype slider estimate")
     st.write("The accuracy for this model is: ".format(model.score(Y_test, pred) * 100))
+    st.write(model.score(Y_test, pred) * 100)
+    
     new_input = st.slider(
         "Slide for an Estimate", 0, 7422208, 1000
     )
@@ -207,17 +196,20 @@ with st.container():
         
     ) 
     st.write("Current Option: " + option)
-    selection = emission[emission.country == option]
-    selection = selection.groupby(["year"])["value"].mean()
-    new = pd.DataFrame(selection)
-    new["year"] = [i for i in new.index]
-    fig, ax = plt.subplots()
-    ax.scatter(new.year, new.value)
-    ax.set_xlabel("Year")
-    ax.set_ylabel("value")
-    ax.set_title("Mean Greenhouse emission for " + option)
-    st.pyplot(fig.figure)
-    plt.show()
+selection = emission[emission.country == f"{option}"]
+selection = selection.groupby(["year"])["value"].mean()
+new = pd.DataFrame(selection)
+new["year"] = [i for i in new.index]
+fig1, o = plt.subplots()
+fig1.suptitle("title")
+o.plot(new.year, new.value)
+o.set_xlabel("Year")
+o.set_ylabel("value")
+o.set_title("Mean Greenhouse emission for " + option)
+
+with st.container():
+    st.pyplot(fig1, clear_figure=False)
+    
         
         
         
