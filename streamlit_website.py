@@ -16,6 +16,8 @@ y1 = []
 sns.set()
 import plotly.graph_objects as go
 from sklearn.preprocessing import LabelEncoder
+import itertools
+from bokeh.palettes import inferno
 le = LabelEncoder()
 emission = pd.read_csv("greenhouse.csv")
 emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
@@ -224,16 +226,24 @@ p.line(new1.Year, new1.value, legend_label='Trend', line_width=2)
 
 st.bokeh_chart(p, use_container_width=True)
 
+# hopefully_works
 
+
+
+new_df = hopefully_works[hopefully_works.country_or_area == option]
+new_df = new_df.pivot_table(columns="category", index="year", values="value")
 with st.container():
     a = figure(
-        title="greenhouse emission types for " + option,
-        x_axis_label="year",
-        y_axis_label="value",
+        title = ("Greenhouse emission categories for " + option),
+        x_axis_label = "year",
+        y_axis_label = "value"
     )
-    a.scatter(selection.year, selection.value, legend_label="category", line_width=2)
+    colors = itertools.cycle(inferno(len(new_df.columns)))
+    for i in new_df.columns:
+        a.line(x=new_df.index, y=new_df[i], legend_label=i, color=next(colors))
+        
     st.bokeh_chart(a, use_container_width=True)
-
+        
 ## Next, I will add a more advanced plot
 ## Which will show mean greenhouse emissions in a country for each category
 

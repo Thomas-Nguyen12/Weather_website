@@ -1,3 +1,0 @@
-name,region,country,lat,lon,tz_id,localtime_epoch,localtime
-London,"City of London, Greater London",United Kingdom,51.52,-0.11,Europe/London,1680291412,2023-03-31 20:36
-1680291000,2023-03-31 20:30,11.0,51.8,0,"{'text': 'Light rain', 'icon': '//cdn.weatherapi.com/weather/64x64/night/296.png', 'code': 1183}",12.5,20.2,280,W,993.0,29.32,0.2,0.01,94,75,8.7,47.6,7.0,4.0,1.0,18.3,29.5,"{'co': 223.60000610351562, 'no2': 12.0, 'o3': 39.29999923706055, 'so2': 3.299999952316284, 'pm2_5': 1.0, 'pm10': 1.2000000476837158, 'us-epa-index': 1, 'gb-defra-index': 1}"
