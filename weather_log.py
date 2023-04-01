@@ -8,3 +8,5 @@ localtime = time.asctime(time.localtime(time.time()) )
 weather_file = open(localtime + "json", "w")
 weather_file.write(current.text)
 weather_file.close()
+
+## hopefully this works!
