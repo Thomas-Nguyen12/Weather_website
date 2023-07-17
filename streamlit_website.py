@@ -18,50 +18,50 @@ import plotly.graph_objects as go
 from sklearn.preprocessing import LabelEncoder
 import itertools
 from bokeh.palettes import inferno
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score 
+from test_AI import *
 le = LabelEncoder()
-emission = pd.read_csv("greenhouse.csv")
-emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
-emission["text"] = "Location: " + emission["country"]
+def convert_value(a):
+    a = np.array([a])
+    a = np.reshape(a, (-1,1))
+#emission = pd.read_csv("greenhouse.csv")
+#emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
+#emission["text"] = "Location: " + emission["country"]
 unique = emission.country.unique()
 
-emission["country"] = le.fit_transform(emission["country"])
-from sklearn import svm
-X = emission.drop(["country", "category", "year", "text"], axis=1) # X = emission.value
-y = emission["country"].values.reshape(-1,1)
-X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
-model = svm.SVC(C=0.02, gamma=0.06)
-model.fit(X_train, Y_train)
-pred = model.predict(X_test)
+#emission["country"] = le.fit_transform(emission["country"])
+from world_emission_plot import *
+
+
+#X = emission.drop(["country", "category", "year", "text"], axis=1) # X = emission.value
+#y = emission["country"].values.reshape(-1,1)
+#model = SVC(C=0.02, gamma=0.06)
+#X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
+#model.fit(X_train, Y_train)
+#pred = model.predict(X_test)
 
 
 
 
 
 
+#fig = go.Figure(data=go.Choropleth(
+    #locations=emission["text"],
+    #z=emission["value"].astype(float),
+    #locationmode="country names",
+    #colorscale="thermal",
+    #colorbar_title="emission",
+    #text=emission["text"] # Hover text
+#))
 
-fig = go.Figure(data=go.Choropleth(
-    locations=emission["text"],
-    z=emission["value"].astype(float),
-    locationmode="country names",
-    colorscale="thermal",
-    colorbar_title="emission",
-    text=emission["text"] # Hover text
-))
-
-fig.update_layout(
-    title_text="Greenhouse emission",
-    geo_scope="world",
+#fig.update_layout(
+    #title_text="Greenhouse emission",
+    #geo_scope="world",
     
-)
+#)
 
 
-for i in range(-10, 11):
-    x1.append(i)
-    y1.append(i**2)
-df = pd.DataFrame({
-    "x": x1,
-    "y": y1
-})
 current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes") 
 forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&days=5&aqi=yes&alerts=yes")
 
@@ -177,20 +177,30 @@ with st.container():
     
 with st.container():
     st.plotly_chart(fig, use_container_width=True)
-        
+   
+   
+## A.I section     
 with st.container():
+    
     st.title("Prototype slider estimate")
-    st.write("The accuracy for this model is: ".format(model.score(Y_test, pred) * 100))
-    st.write(model.score(Y_test, pred) * 100)
+    st.write("The accuracy for this model is:")
+    st.write(accuracy)
     
     new_input = st.slider(
         "Slide for an Estimate", 0, 7422208, 1000
     )
-    new_input = int(new_input)
+    
     new_input = np.array(new_input)
-    new_input = np.reshape(new_input, (-1, 1))
-    st.write(f"Prediction ID: {model.predict(new_input)}")
-    st.write(f"Country Prediction: {unique[model.predict(new_input)]}")
+    new_input = np.reshape(new_input, (-1,1))
+    ID = model.predict(new_input)
+    st.write(f"Prediction ID: {ID}") #returns the encoded value
+    ## Maybe I can find the country by selecting the row of the associated country encoded ID
+    ### ID = model.predict(new_input)
+    ID = int(ID)
+    country = emission["text"].unique()[ID]
+     
+    st.write(f"country: ")
+    st.write(country)
 with st.container():
     option = st.selectbox(
         "Which Country would You like to visualize?",
@@ -246,4 +256,3 @@ with st.container():
         
 ## Next, I will add a more advanced plot
 ## Which will show mean greenhouse emissions in a country for each category
-

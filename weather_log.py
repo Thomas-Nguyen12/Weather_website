@@ -5,8 +5,8 @@ current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155a
 
 localtime = time.asctime(time.localtime(time.time()) )
 
-weather_file = open(localtime + "json", "w")
-weather_file.write(current.text)
-weather_file.close()
+with open('/Users/thomasnguyen/weather_files/' + localtime + ".json", 'w') as weather_file:
+    weather_file.write(current.text)
+    weather_file.close()
 
 ## hopefully this works!
