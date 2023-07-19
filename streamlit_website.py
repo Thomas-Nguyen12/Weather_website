@@ -1,23 +1,22 @@
 import streamlit as st
 
 import pandas as pd
-import seaborn as sns
+
 import requests
 
 
 import numpy as np
 from scipy.stats import *
-import seaborn as sns
-import statsmodels.api as sm
-from sklearn.model_selection import train_test_split
+
+
+
 from bokeh.plotting import figure
 sns.set()
 import plotly.graph_objects as go
-from sklearn.preprocessing import LabelEncoder
+
 import itertools
 from bokeh.palettes import inferno
-from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score 
+
 from test_AI import *
 le = LabelEncoder()
 
