@@ -6,14 +6,14 @@ import requests
 
 
 import numpy as np
-
+from scipy.stats import *
 
 
 
 from bokeh.plotting import figure
 
 import plotly.graph_objects as go
-
+from sklearn.preprocessing import LabelEncoder
 import itertools
 from bokeh.palettes import inferno
 
@@ -54,25 +54,11 @@ import pandas as pd
 
 import json
 import csv
- 
-with open('3_hour_forecast.json') as json_file:
-    jsondata = json.load(json_file)
- 
-data_file = open('weather_forecast.csv', 'w', newline='')
-csv_writer = csv.writer(data_file)
- 
-count = 0
-for data in jsondata:
-    if count == 0:
-        header = jsondata[data].keys()
-        csv_writer.writerow(header)
-        count += 1
-    csv_writer.writerow(jsondata[data].values())
- 
-data_file.close()
+## forecast_df
+## json_df
 
-
-
+json_df = pd.read_json(current.text)
+forecast_df = pd.read_json(forecast.text)
 
 st.set_page_config(page_title="Weather Data", page_icon=":tada:", layout="wide")
 with st.container():
@@ -101,21 +87,13 @@ with st.container():
     st.title("HELLO, FATHER")
     st.write("This website will contain my weather prediction data")
 
-json_df = pd.read_json("3_hour_forecast.json")
-json_df = json_df.fillna("0")
 
 # This section will provide a forecast table
 
-json_df = pd.read_json("3_hour_forecast.json")
-json_df = json_df.fillna("0")
 
 
-forecast_file = open("forecast.json", "w")
-forecast_file.write(forecast.text)
-forecast_file.close()
 
-forecast_df = pd.read_json("forecast.json")
-forecast_df = forecast_df.fillna("0")
+
 
 weather_forecast = forecast_df["forecast"]["forecastday"]
 weather_forecast = pd.DataFrame(weather_forecast)
