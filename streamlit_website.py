@@ -11,8 +11,6 @@ import seaborn as sns
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from bokeh.plotting import figure
-x1 = []
-y1 = []
 sns.set()
 import plotly.graph_objects as go
 from sklearn.preprocessing import LabelEncoder
@@ -22,44 +20,14 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score 
 from test_AI import *
 le = LabelEncoder()
-def convert_value(a):
-    a = np.array([a])
-    a = np.reshape(a, (-1,1))
-#emission = pd.read_csv("greenhouse.csv")
-#emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
-#emission["text"] = "Location: " + emission["country"]
+
+
 unique = emission.country.unique()
 
-#emission["country"] = le.fit_transform(emission["country"])
+
 from world_emission_plot import *
 
 
-#X = emission.drop(["country", "category", "year", "text"], axis=1) # X = emission.value
-#y = emission["country"].values.reshape(-1,1)
-#model = SVC(C=0.02, gamma=0.06)
-#X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
-#model.fit(X_train, Y_train)
-#pred = model.predict(X_test)
-
-
-
-
-
-
-#fig = go.Figure(data=go.Choropleth(
-    #locations=emission["text"],
-    #z=emission["value"].astype(float),
-    #locationmode="country names",
-    #colorscale="thermal",
-    #colorbar_title="emission",
-    #text=emission["text"] # Hover text
-#))
-
-#fig.update_layout(
-    #title_text="Greenhouse emission",
-    #geo_scope="world",
-    
-#)
 
 
 current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes") 
@@ -69,7 +37,7 @@ print ("code: {}".format(current.status_code))
 
 
 
-#df = response_hourly.text
+
 
 
 print ("\n")
@@ -103,9 +71,6 @@ for data in jsondata:
     csv_writer.writerow(jsondata[data].values())
  
 data_file.close()
-
-temp_df = pd.read_csv("weather_forecast.csv", delimiter=';', skiprows=0, low_memory=False)
-temp_df = temp_df.fillna("0")
 
 
 
@@ -180,27 +145,86 @@ with st.container():
    
    
 ## A.I section     
+
+
+## Design a multi-selector
 with st.container():
     
     st.title("Prototype slider estimate")
     st.write("The accuracy for this model is:")
     st.write(accuracy)
     
-    new_input = st.slider(
-        "Slide for an Estimate", 0, 7422208, 1000
-    )
     
-    new_input = np.array(new_input)
-    new_input = np.reshape(new_input, (-1,1))
-    ID = model.predict(new_input)
-    st.write(f"Prediction ID: {ID}") #returns the encoded value
-    ## Maybe I can find the country by selecting the row of the associated country encoded ID
-    ### ID = model.predict(new_input)
+    ## This part is the model inputs
+    ## The left column contains year and value
+    ## Right column contains category and language
+    
+    ## A button will be included to confirm input
+    
+    left_column, right_column = st.columns(2)
+    
+    with left_column:
+        
+        value_input = st.slider(
+        "Value", 0, 7422208, 1000
+        )
+        
+        year_input = st.slider(
+            "year", 1990, 2014, 2000
+        )
+        
+        
+    
+    with right_column:
+        ## Here, I need to match the string value to the encoded value
+        
+        unique_categories = emission.category.unique()
+        unique_languages = emission.official_language.unique()
+        
+        category_input = st.selectbox(
+            "Select the emission category",
+            unique_categories
+        )
+        
+        category_input = emission[emission.category == category_input]["category_encoded"].unique()
+        
+        
+        
+        
+        
+        language_input = st.selectbox(
+            "select the official language",
+            unique_languages
+        )
+        
+        
+        language_input = emission[emission.official_language == language_input]["official_language_encoded"].unique()
+        
+        
+    
+        
+        
+    ## MODEL INPUT
+    ## I place all inputs into a dataframe
+    
+    input_values = np.array([year_input, value_input, category_input, language_input])
+    
+    input_values = np.reshape(input_values, (1,4))
+    
+    input_values = pd.DataFrame(input_values, columns=["year", "value", "category_encoded", "official_language_encoded"])
+    
+    
+    ID = model.predict(input_values)
+    
+    
+    st.write(f"Prediction ID: {ID}") 
+    
     ID = int(ID)
-    country = emission["text"].unique()[ID]
+    prediction = unique[ID]
+    st.write("Country Prediction: " + prediction)
      
-    st.write(f"country: ")
-    st.write(country)
+    
+    
 with st.container():
     option = st.selectbox(
         "Which Country would You like to visualize?",
@@ -210,9 +234,10 @@ with st.container():
     st.write("Current Option: " + option)
 
 hopefully_works = pd.read_csv("greenhouse.csv")
-selection = hopefully_works[hopefully_works.country_or_area == option]
+selection = hopefully_works[hopefully_works.country== option]
 
 
+## Plotting average emissions per year for a selected country
 new = selection.groupby(["year"])["value"].mean()
 
 new["year"] = [i for i in new.index]
@@ -240,7 +265,7 @@ st.bokeh_chart(p, use_container_width=True)
 
 
 
-new_df = hopefully_works[hopefully_works.country_or_area == option]
+new_df = hopefully_works[hopefully_works.country == option]
 new_df = new_df.pivot_table(columns="category", index="year", values="value")
 with st.container():
     a = figure(
