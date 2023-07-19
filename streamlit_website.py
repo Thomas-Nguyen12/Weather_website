@@ -42,11 +42,6 @@ print ("code: {}".format(current.status_code))
 print ("\n")
 print (current.text)
 
-file = open("3_hour_forecast.json", "w")
-file.write(current.text)
-file.close()
-f1 = pd.read_json("3_hour_forecast.json", "r")
-
 import json
 import csv
 import pandas as pd
