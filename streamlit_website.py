@@ -204,34 +204,30 @@ with st.container():
         
     ) 
     st.write("Current Option: " + option)
-
-hopefully_works = pd.read_csv("greenhouse.csv")
-selection = hopefully_works[hopefully_works.country== option]
-
-
-## Plotting average emissions per year for a selected country
-new = selection.groupby(["year"])["value"].mean()
-
-new["year"] = [i for i in new.index]
-
-st.dataframe(new)
-new1 = pd.DataFrame(new)
-new1["Year"] = [i for i in new1.index] 
-
-st.write("Mean greenhouse emission per year for " + option)
-from bokeh.plotting import figure, show
+    hopefully_works = pd.read_csv("greenhouse.csv")
+    selection = hopefully_works[hopefully_works.country== option]
 
 
-p = figure(
-    title='greenhouse emission for ' + option,
-    x_axis_label='year',
-    y_axis_label='value')
+    ## Plotting average emissions per year for a selected country
+    new = selection.groupby(["year"])["value"].mean()
 
-p.line(new1.Year, new1.value, legend_label='Trend', line_width=2)
+    new["year"] = [i for i in new.index]
+
+    st.dataframe(new)
+    new1 = pd.DataFrame(new)
+    new1["Year"] = [i for i in new1.index] 
+
+    st.write("Mean greenhouse emission per year for " + option)
+    from bokeh.plotting import figure, show
 
 
+    p = figure(
+        title='greenhouse emission for ' + option,
+        x_axis_label='year',
+        y_axis_label='value')
 
-st.bokeh_chart(p, use_container_width=True)
+    p.line(new1.Year, new1.value, legend_label='Trend', line_width=2)
+    st.bokeh_chart(p, use_container_width=True)
 
 # hopefully_works
 
