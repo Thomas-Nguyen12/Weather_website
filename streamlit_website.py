@@ -219,7 +219,7 @@ new1 = pd.DataFrame(new)
 new1["Year"] = [i for i in new1.index] 
 
 st.write("Mean greenhouse emission per year for " + option)
-from bokeh.plotting import figure
+from bokeh.plotting import figure, show
 
 
 p = figure(
