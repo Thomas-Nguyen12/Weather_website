@@ -6,12 +6,12 @@ import requests
 
 
 import numpy as np
-from scipy.stats import *
+
 
 
 
 from bokeh.plotting import figure
-sns.set()
+
 import plotly.graph_objects as go
 
 import itertools
