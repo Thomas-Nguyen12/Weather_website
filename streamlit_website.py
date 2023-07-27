@@ -54,6 +54,8 @@ import csv
 
 json_df = pd.read_json(current.text)
 forecast_df = pd.read_json(forecast.text)
+json_df.fillna("0", inplace=True)
+forecast_df.fillna('0', inplace=True)
 
 st.set_page_config(page_title="Weather Data", page_icon=":tada:", layout="wide")
 with st.container():
@@ -79,7 +81,6 @@ with st.container():
         st.write("Money prediction A.I")
 with st.container():
     st.subheader("Hi, I am Thomas :wave:")
-    st.title("HELLO, FATHER")
     st.write("This website will contain my weather prediction data")
 
 
@@ -92,6 +93,11 @@ with st.container():
 
 weather_forecast = forecast_df["forecast"]["forecastday"]
 weather_forecast = pd.DataFrame(weather_forecast)
+
+
+## I should create separate dataframes for each day in weather_forecast
+
+
 
 with st.container():
     left_column, right_column = st.columns(2)

@@ -5,7 +5,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score 
-
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
 
 emission = pd.read_csv("greenhouse.csv")
 
@@ -15,10 +16,12 @@ X = emission.drop(["country", "country_encoded", "category", "region", "directio
 y = emission.country_encoded.values.reshape(-1,1)
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2)
 
-model = DecisionTreeClassifier(random_state=42)
+model = DecisionTreeClassifier(random_state=42, class_weight="balanced")
 model.fit(X_train, Y_train)
 pred = model.predict(X_test)
-print (f"accuracy: {accuracy_score(Y_test, pred) * 100} %")
+train_pred = model.predict(X_train)
+print (f"X columns: {X.columns}")
+print (f"cross validation score: {cross_val_score(model, X, y)}")
+print (f"test accuracy: {accuracy_score(Y_test, pred) * 100} %")
+print (f"training accuracy: {accuracy_score(Y_train, train_pred) * 100} %")
 accuracy = accuracy_score(Y_test, pred) * 100
-print ("X columns:")
-print (X_train.columns)
