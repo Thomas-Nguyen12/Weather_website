@@ -5,12 +5,9 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 emission = pd.read_csv("greenhouse.csv")
-emission.rename({"country_or_area": "country"}, axis=1, inplace=True)
 emission["text"] = "Location: " + emission["country"]
 
 unique = emission.country.unique()
-
-emission["country"] = le.fit_transform(emission["country"])
 fig = go.Figure(data=go.Choropleth(
     locations=emission["text"],
     z=emission["value"].astype(float),

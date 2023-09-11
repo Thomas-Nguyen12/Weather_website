@@ -129,8 +129,12 @@ with st.container():
 with st.container():
     
     st.title("Prototype slider estimate")
-    st.write("The accuracy for this model is:")
-    st.write(accuracy)
+    st.write(f"test accuracy: {accuracy}")
+    st.write(f"training accuracy: {train_accuracy}")
+    st.write(f"f1 score: {f1}")
+    st.write(f"recall: {recall}")
+    st.write(f"precision: {precision}")
+
     
     
     ## This part is the model inputs
@@ -164,7 +168,7 @@ with st.container():
             unique_categories
         )
         
-        category_input = emission[emission.category == category_input]["category_encoded"].unique()
+        #category_input = emission[emission.category == category_input]["category"].unique()
         
         
         
@@ -176,20 +180,69 @@ with st.container():
         )
         
         
-        language_input = emission[emission.official_language == language_input]["official_language_encoded"].unique()
+        #language_input = emission[emission.official_language == language_input]["official_language"].unique()
         
         
     
         
         
-    ## MODEL INPUT
+    
     ## I place all inputs into a dataframe
     
-    input_values = np.array([year_input, value_input, category_input, language_input])
+    ## Unique encoded countries
+    unique_encoded_countries = new_emission.country.unique() 
+
+    ## Unique encoded categories
+    unique_encoded_categories = new_emission.category.unique()
+
+    ## Unique official language
+    unique_encoded_languages = new_emission.official_language.unique() 
+
+
+    ## Matching encoded values to string types
+    
+    ## Indexes should be the same 
+    
+    countries = [i for i in zip(unique, unique_encoded_countries)]
+    categories = [i for i in zip(unique_categories, unique_encoded_categories)]
+    languages = [i for i in zip(unique_languages, unique_encoded_languages)]
+    
+    
+    ## Matching the inputted country, category and langauges to their encoded types
+    
+    ## I need to find where the input matches the [0] index of categories and languages
+    st.write("category input: " + str(category_input))
+    st.write("language input: " + str(language_input))
+    
+    
+    st.write("\n \n \n \n")
+    input_category = []
+    input_language = []
+    for i in range(len(categories)):
+        if categories[i][0] == category_input:
+            input_category.append(categories[i][1])
+        else:
+            pass
+    
+    for i in range(len(languages)):
+        if languages[i][0] == language_input:
+            input_language.append(languages[i][1])
+        else:
+            pass
+        
+    ## returning the inputs
+    st.write("inputs")
+    st.write(input_category)
+    st.write(input_language)
+    
+    
+    ### MODEL Input
+    
+    input_values = np.array([year_input, value_input, input_category[0], input_language[0]])
     
     input_values = np.reshape(input_values, (1,4))
     
-    input_values = pd.DataFrame(input_values, columns=["year", "value", "category_encoded", "official_language_encoded"])
+    input_values = pd.DataFrame(input_values, columns=["year", "value", "category", "official_language"])
     
     
     ID = model.predict(input_values)
@@ -202,7 +255,13 @@ with st.container():
     st.write("Country Prediction: " + prediction)
      
     
-    
+#####################
+
+
+
+
+
+
 with st.container():
     option = st.selectbox(
         "Which Country would You like to visualize?",
