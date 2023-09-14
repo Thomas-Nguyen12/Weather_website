@@ -256,21 +256,26 @@ with st.container():
      
     
 #####################
-
-
-
-
-
-
 with st.container():
+    
     option = st.selectbox(
-        "Which Country would You like to visualize?",
-        unique,
-        
-    ) 
+            "Which Country would You like to visualize?",
+            unique,
+            
+        ) 
     st.write("Current Option: " + option)
     hopefully_works = pd.read_csv("greenhouse.csv")
     selection = hopefully_works[hopefully_works.country== option]
+    
+    
+
+## Forming tabs
+mean_country_tab, emission_tab = st.tabs(["Mean Emissions", "Each Emission"])
+
+
+
+with mean_country_tab:
+    
 
 
     ## Plotting average emissions per year for a selected country
@@ -278,7 +283,7 @@ with st.container():
 
     new["year"] = [i for i in new.index]
 
-    st.dataframe(new)
+    
     new1 = pd.DataFrame(new)
     new1["Year"] = [i for i in new1.index] 
 
@@ -296,11 +301,10 @@ with st.container():
 
 # hopefully_works
 
+with emission_tab:
+    new_df = hopefully_works[hopefully_works.country == option]
+    new_df = new_df.pivot_table(columns="category", index="year", values="value")
 
-
-new_df = hopefully_works[hopefully_works.country == option]
-new_df = new_df.pivot_table(columns="category", index="year", values="value")
-with st.container():
     a = figure(
         title = ("Greenhouse emission categories for " + option),
         x_axis_label = "year",
@@ -311,6 +315,16 @@ with st.container():
         a.line(x=new_df.index, y=new_df[i], legend_label=i, color=next(colors))
         
     st.bokeh_chart(a, use_container_width=True)
-        
-## Next, I will add a more advanced plot
-## Which will show mean greenhouse emissions in a country for each category
+
+## I can also do some time series analysis here
+
+#========================================
+### What should this networkx graph show?
+## I can add a networkx plot (using tabs) detailing how 
+## Emissions vary with countries and regions
+## The connecting factor can be the types of emissions 
+## 
+
+
+#========================================
+## I can also use the historical dataset

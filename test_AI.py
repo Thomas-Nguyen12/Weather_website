@@ -11,6 +11,12 @@ from sklearn.ensemble import RandomForestClassifier
 import shap
 
 emission = pd.read_csv("greenhouse.csv")
+## Dropping columns
+
+emission.drop(["Unnamed: 0.1",
+               "Unnamed: 0.2"], axis=1,
+              inplace=True)
+
 
 ## Preprocessing 
 from imblearn.over_sampling import RandomOverSampler 
