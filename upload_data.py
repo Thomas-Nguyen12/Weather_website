@@ -1,66 +1,3 @@
-pi@raspberrypi:~$ nano weather_website/request.py
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import pandas as pd
 import datetime
 import numpy as np
@@ -124,6 +61,7 @@ for index, row in new_df.iterrows():
     values_row = tuple(str(value) for value in row)  # Convert row values to strings
     print (values_row)
     query = """
+    
         INSERT INTO weather_data (
             id, name, region, country, lat, lon, tz_id, epoch, time, last_updated_epoch, last_updated, temp_c, temp_f,
             is_day, wind_mph, wind_kph, wind_degree, wind_dir, pressure_mb, pressure_in,
@@ -131,7 +69,7 @@ for index, row in new_df.iterrows():
         )
         VALUES (
             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-
+    """
     try:
         mycursor.execute(query, values_row)
         mydb.commit()

@@ -7,15 +7,15 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score 
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
+import re 
+import numpy as np
 
-import shap
 
-emission = pd.read_csv("greenhouse.csv")
+emission = pd.read_csv("greenhouse.csv",index_col=0)
+
 ## Dropping columns
+## I should remove all "Unnamed: n" by default
 
-emission.drop(["Unnamed: 0.1",
-               "Unnamed: 0.2"], axis=1,
-              inplace=True)
 
 
 ## Preprocessing 
@@ -29,7 +29,7 @@ le = LabelEncoder()
 te = TargetEncoder() 
 emission["country_encoded"] = le.fit_transform(emission["country"])
 
-X = emission.drop(["country", "capitals", "country_encoded", "Unnamed: 0", "region", "directions"], axis=1)
+X = emission.drop(["country", "capitals", "country_encoded", "region", "directions"], axis=1)
 
 y = emission["country_encoded"].values.reshape(-1,1)
 
@@ -67,5 +67,15 @@ recall = recall_score(Y_test, pred, average="macro")
 precision = precision_score(Y_test, pred, average="macro")
 
 ## Explainability
+## I can use SHAP to encode LIME
+
+## Using LIME 
+## Lime only has to explain the inputted values
+
+
+## I need to make sure this plot can be used in streamlit
+## Perhaps I can use matplotlib method
+
+
 
 
