@@ -14,7 +14,6 @@ le = LabelEncoder()
 unique = emission.country.unique()
 from world_emission_plot import *
 import shap
-from streamlit_shap import st_shap
 
 
 current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
@@ -256,15 +255,15 @@ with model_tab:
     st.write("Country Prediction: " + prediction)
 
 with explanation_tab:
-    explainer = shap.TreeExplainer(model, X_test, feature_names=X_test.columns)
-    shap_values = explainer(input_values)
+    #explainer = shap.TreeExplainer(model, X_test, feature_names=X_test.columns)
+    #shap_values = explainer(input_values)
     
     
     ## Displaying the SHAP explanation
     ## error returns 
-    st_shap(shap.initjs())
-    st_shap(shap.force_plot(explainer.expected_value[0], shap_values.values[0], feature_names=X_test.columns))
-    
+    #st_shap(shap.initjs())
+    #st_shap(shap.force_plot(explainer.expected_value[0], shap_values.values[0], feature_names=X_test.columns))
+    st.write("under development...")
 
 
 #####################
