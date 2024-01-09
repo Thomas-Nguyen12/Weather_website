@@ -13,7 +13,7 @@ from test_AI import *
 le = LabelEncoder()
 unique = emission.country.unique()
 from world_emission_plot import *
-import shap
+
 
 
 current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
