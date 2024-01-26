@@ -7,3 +7,4 @@ bokeh==2.4.3
 plotly==5.17.0
 scikit-learn==1.2.2
 imbalanced_learn==0.12.0
+category_encoders==2.3.0
