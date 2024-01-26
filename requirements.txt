@@ -306,7 +306,6 @@ stable-baselines3==1.8.0
 stack-data @ file:///opt/conda/conda-bld/stack_data_1646927590127/work
 statsmodels==0.14.0
 streamlit==1.26.0
-streamlit-shap==1.0.2
 sympy @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_21kpmugwgm/croot/sympy_1668202392692/work
 tenacity==8.2.3
 tensorboard==2.13.0
