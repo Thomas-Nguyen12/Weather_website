@@ -6,3 +6,4 @@ scipy==1.11.2
 bokeh==2.4.3
 plotly==5.17.0
 scikit-learn==1.2.2
+imblearn==0.11.0
