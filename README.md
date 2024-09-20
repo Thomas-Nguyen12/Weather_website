@@ -15,18 +15,27 @@ This project uses the <b>request</b> module from APIs taken from weatherapi.com
 1. <b>Dashboard:</b> this dashboard uses Stremalit to present the data found within <b>streamlit_website.py</b>
 
 2. <b>models and accuracy metrics:</b> The model, metrics, and explainer (SHAP and LIME) can be found within pickle files:
-accuracy.pkl
-emission.pkl
-explainer.pkl
-f1.pkl
-lime_explainer.pkl
-precision.pkl
-recall.pkl
-train_accuracy.pkl
-weather_model.pkl
-weather_shap_values.pkl
-
 Models were created and saved in <b>test_AI.py</b>.
+
+<u>Model</u>: 
+- weather_model.pkl
+
+<u>Metrics</u>:
+- accuracy.pkl
+- f1.pkl
+- precision.pkl
+- recall.pkl
+- train_accuracy.pkl
+
+<u>DataFrame</u>:
+- emission.pkl
+
+<u>Explainer</u>:
+- explainer.pkl
+- lime_explainer.pkl
+- weather_shap_values.pkl
+
+
 
 ## Packages
 The packages for this project can be found within <b>requirements.txt</b> listed here: 
