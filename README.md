@@ -35,6 +35,9 @@ Models were created and saved in <b>test_AI.py</b>.
 - lime_explainer.pkl
 - weather_shap_values.pkl
 
+## Data Source
+
+Greenhouse Emission Data was published by the United Nation on the UNData site (data.un.org, n.d.). 
 
 
 ## Packages
@@ -54,5 +57,7 @@ The packages for this project can be found within <b>requirements.txt</b> listed
 - streamlit_shap==1.0.2
 
 ## Reference list
+
+data.un.org. (n.d.). UNdata | explorer. [online] Available at: http://data.un.org/Explorer.aspx.
 
 Harboure, P. (2024). WEATHER CLIMATE WATER WMO Global Annual to Decadal Climate Update 2024-2028. [online] Available at: https://library.wmo.int/viewer/68910/download?file=WMO_GADCU_2024-2028_en.pdf&type=pdf&navigator=1.
