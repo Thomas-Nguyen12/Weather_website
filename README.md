@@ -44,6 +44,7 @@ The pickle files were saved in the following categories:
 
 
 ## Packages
+This project uses python = 3.11.1.
 The packages for this project can be found within <b>requirements.txt</b> listed here: 
 
 - streamlit==1.30.0
