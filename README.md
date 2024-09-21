@@ -9,11 +9,16 @@ This project aims to analyse weather patterns in New Eltham alongside Global Gre
 classify countries with certain emissions and regions. In the future, I plan on tracking historical temperature variations to forecast future ones 
 from <b>theweathernetwork.com</b>.
 
-## Files
+## How to use:
 1. <b>Dashboard:</b> this dashboard uses Stremalit to present the data found within <b>streamlit_website.py</b>
+This dashboard can be run using the code:
+> streamlit run streamlit_webbsite.py
 
-2. <b>models and accuracy metrics:</b> The model, metrics, and explainer (SHAP and LIME) can be found within pickle files:
-Models were created and saved in <b>test_AI.py</b>.
+3. <b>models and accuracy metrics:</b> The model, metrics, and explainer (SHAP and LIME) can be found within pickle files:
+Models were created and saved in <b>test_AI.py</b> which can be run using the code:
+> python3 test_AI.py
+
+The pickle files were saved in the following categories: 
 
 <u>Model</u>: 
 - weather_model.pkl
