@@ -10,8 +10,6 @@ classify countries with certain emissions and regions. In the future, I plan on 
 from <b>theweathernetwork.com</b>.
 
 ## Files
-This project uses the <b>request</b> module from APIs taken from weatherapi.com 
-
 1. <b>Dashboard:</b> this dashboard uses Stremalit to present the data found within <b>streamlit_website.py</b>
 
 2. <b>models and accuracy metrics:</b> The model, metrics, and explainer (SHAP and LIME) can be found within pickle files:
@@ -36,8 +34,8 @@ Models were created and saved in <b>test_AI.py</b>.
 - weather_shap_values.pkl
 
 ## Data Source
-
-Greenhouse Emission Data was published by the United Nation on the UNData site (data.un.org, n.d.). 
+- Weather data for Eltham was collected using the <b>request</b> module from weatherapi.com 
+- Greenhouse Emission Data was published by the United Nation on the UNData site (data.un.org, n.d.). 
 
 
 ## Packages
