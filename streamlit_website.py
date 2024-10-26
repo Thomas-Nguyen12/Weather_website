@@ -35,8 +35,8 @@ current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155a
 forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&days=5&aqi=yes&alerts=yes")
 
 # Process weather data
-json_df = pd.read_json(current.text)
-forecast_df = pd.read_json(forecast.text)
+json_df = pd.read_json(current.text, encoding='utf-8-sig')
+forecast_df = pd.read_json(forecast.text, encoding='utf-8-sig')
 json_df.fillna("0", inplace=True)
 forecast_df.fillna('0', inplace=True)
 
