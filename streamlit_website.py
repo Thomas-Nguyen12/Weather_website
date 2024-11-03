@@ -142,12 +142,13 @@ with model_tab:
 
 with explanation_tab:
     st.header("Model Explanation with SHAP")
+    shap.initjs()
     st_shap(shap.initjs())
     
 
     
     st_shap(shap.summary_plot(shap_values[:, :, 0]))
-    #st_shap(shap.force_plot(shap_values[:, :, 0]))
+    
 
 
     #shap.force_plot(explainer.expected_value, shap_values[0])
