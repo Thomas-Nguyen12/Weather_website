@@ -53,16 +53,12 @@ f1 = f1_score(Y_test, pred, average="macro")
 recall = recall_score(Y_test, pred, average="macro")
 precision = precision_score(Y_test, pred, average="macro")
 
-with open("train_accuracy.pkl", "wb") as f:
-        pickle.dump(train_accuracy, f)
-with open("accuracy.pkl", "wb") as f:
-        pickle.dump(accuracy, f)
-with open("f1.pkl", "wb") as f:
-        pickle.dump(f1, f)
-with open("recall.pkl", "wb") as f:
-        pickle.dump(recall, f)
-with open("precision.pkl", "wb") as f:
-        pickle.dump(precision, f)
+
+joblib.dump(train_accuracy, 'train_accuracy.pkl')
+joblib.dump(accuracy, 'accuracy.pkl')
+joblib.dump(f1, 'f1.pkl')
+joblib.dump(recall, 'recall.pkl')
+joblib.dump(precision, 'precision.pkl')
 
 print(f"Train Accuracy: {train_accuracy}")
 print(f"Test Accuracy: {accuracy}")
