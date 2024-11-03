@@ -71,8 +71,10 @@ print(f"Precision: {precision}")
 
 
 # SHAP explainability
+print ("Loading explainer...")
 explainer = shap.Explainer(model)
 shap_values = explainer(X_test)
-joblib.dump(explainer, "explainer.pkl")
+
 # Save SHAP values
 joblib.dump(shap_values, "weather_shap_values.pkl")
+print ("Completed Explainer...")

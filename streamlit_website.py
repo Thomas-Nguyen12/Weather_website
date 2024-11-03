@@ -16,7 +16,7 @@ import lime
 from lime import lime_tabular
 # Custom unpickler to handle missing attributes
 model = joblib.load("weather_model.pkl")
-explainer = joblib.load("explainer.pkl")
+
 shap_values = joblib.load("weather_shap_values.pkl")
 train_accuracy = joblib.load("train_accuracy.pkl")
 accuracy = joblib.load("accuracy.pkl")
