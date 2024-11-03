@@ -32,7 +32,7 @@ unique = emission.country.unique()
 
 # Fetch current weather and forecast data
 current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
-forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=SE93HX&days=5&aqi=yes&alerts=yes")
+forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=New Eltham&days=5&aqi=yes&alerts=yes")
 
 # Process weather data
 json_df = pd.read_json(current.text, encoding='utf-8-sig')
