@@ -16,7 +16,7 @@ import lime
 from lime import lime_tabular
 # Custom unpickler to handle missing attributes
 model = joblib.load("weather_model.pkl")
-
+X_test = joblib.load("X_test.pkl")
 shap_values = joblib.load("weather_shap_values.pkl")
 train_accuracy = joblib.load("train_accuracy.pkl")
 accuracy = joblib.load("accuracy.pkl")
@@ -147,7 +147,7 @@ with explanation_tab:
     
 
     
-    st_shap(shap.summary_plot(shap_values[:, :, 0]))
+    st_shap(shap.summary_plot(shap_values[:, :, 0], X_test))
     
 
 

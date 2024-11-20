@@ -78,3 +78,4 @@ shap_values = explainer(X_test)
 # Save SHAP values
 joblib.dump(shap_values, "weather_shap_values.pkl")
 print ("Completed Explainer...")
+joblib.dump(X_test, 'X_test.pkl')
