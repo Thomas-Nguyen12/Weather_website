@@ -14,3 +14,4 @@ scikit_learn==1.2.2
 shap==0.45.1
 streamlit==1.30.0
 streamlit_shap==1.0.2
+IPython==8.12.3
