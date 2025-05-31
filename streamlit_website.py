@@ -14,7 +14,15 @@ import joblib
 import pickle
 import lime 
 from lime import lime_tabular
-# Custom unpickler to handle missing attributes
+# Custom unpickler to handle missing attribute
+
+# Importing the api keys for the weather website
+import sys 
+
+sys.path.append("/Users/thomasnguyen/")
+import api_keys
+
+
 model = joblib.load("weather_model.pkl")
 X_test = joblib.load("X_test.pkl")
 shap_values = joblib.load("weather_shap_values.pkl")
@@ -31,8 +39,8 @@ le = LabelEncoder()
 unique = emission.country.unique()
 
 # Fetch current weather and forecast data
-current = requests.get("http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
-forecast = requests.get("http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=New Eltham&days=5&aqi=yes&alerts=yes")
+current = requests.get(f"http://api.weatherapi.com/v1/current.json?key={api_keys.weather_api_key}&q=London&aqi=yes")
+forecast = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={api_keys.weather_api_key}&q=New Eltham&days=5&aqi=yes&alerts=yes")
 
 # Process weather data
 json_df = pd.read_json(current.text, encoding='utf-8-sig')
@@ -70,8 +78,7 @@ forecast_df = pd.DataFrame({
 forecast_df.index = indexes
 
 # Set up Streamlit app
-st.set_page_config(page_title="Weather Data", page_icon=":tada:", layout="wide")
-
+st.title("Weather Data :tada:") 
 # Header
 with st.container():
     st.subheader("Hi, I am Thomas :wave:")
