@@ -19,8 +19,8 @@ from lime import lime_tabular
 # Importing the api keys for the weather website
 import sys 
 
-sys.path.append("/Users/thomasnguyen/")
-import api_keys
+
+
 
 
 model = joblib.load("weather_model.pkl")
