@@ -39,8 +39,8 @@ le = LabelEncoder()
 unique = emission.country.unique()
 
 # Fetch current weather and forecast data
-current = requests.get(f"http://api.weatherapi.com/v1/current.json?key={api_keys.weather_api_key}&q=London&aqi=yes")
-forecast = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={api_keys.weather_api_key}&q=New Eltham&days=5&aqi=yes&alerts=yes")
+current = requests.get(f"http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
+forecast = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=New Eltham&days=5&aqi=yes&alerts=yes")
 
 # Process weather data
 json_df = pd.read_json(current.text, encoding='utf-8-sig')
