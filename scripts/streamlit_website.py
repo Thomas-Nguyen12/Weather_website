@@ -15,12 +15,13 @@ import pickle
 import lime 
 from lime import lime_tabular
 # Custom unpickler to handle missing attribute
-
+from dotenv import load_dotenv
+load_dotenv()
 # Importing the api keys for the weather website
 import sys 
 
-import os 
-os.chdir("../")
+import os
+print("Current directory now:" , os.getcwd())
 
 
 
@@ -39,9 +40,13 @@ emission = joblib.load("data/emission.pkl")
 le = LabelEncoder()
 unique = emission.country.unique()
 
+current_api_key=os.environ.get("current_api_key")
+forecast_api_key=os.environ.get("forecast_api_key")
+
+
 # Fetch current weather and forecast data
-current = requests.get(f"http://api.weatherapi.com/v1/current.json?key=4a1f9e155ac6494e98a15506222712&q=London&aqi=yes")
-forecast = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key=4a1f9e155ac6494e98a15506222712&q=New Eltham&days=5&aqi=yes&alerts=yes")
+current = requests.get(f"http://api.weatherapi.com/v1/current.json?key={current_api_key}&q=London&aqi=yes")
+forecast = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={forecast_api_key}&q=New Eltham&days=5&aqi=yes&alerts=yes")
 
 # Process weather data
 json_df = pd.read_json(current.text, encoding='utf-8-sig')
