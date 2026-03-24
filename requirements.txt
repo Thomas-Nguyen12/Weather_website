@@ -1,11 +1,9 @@
 bokeh==2.4.3
-catboost==1.2.5
 category_encoders==2.3.0
 imbalanced_learn==0.12.0
 joblib==1.4.2
 lime==0.2.0.1
 matplotlib==3.8.4
-mysql_connector_repackaged==0.3.1
 numpy==1.23.5
 pandas==2.0.3
 plotly==5.17.0
@@ -14,4 +12,3 @@ scikit_learn==1.2.2
 shap==0.45.1
 streamlit==1.30.0
 streamlit_shap==1.0.2
-IPython==8.12.3
