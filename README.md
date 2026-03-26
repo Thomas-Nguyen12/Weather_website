@@ -42,6 +42,9 @@ The pickle files were saved in the following categories:
 - Weather data for Eltham was collected using the <b>request</b> module from weatherapi.com 
 - Greenhouse Emission Data was published by the United Nation on the UNData site (data.un.org, n.d.). 
 
+## Future outcomes
+I wish to build a historical weather database, with the initial data stored within the collected_data/ folder. From this, I can perform a time series analysis and predict future weather outcomes
+
 
 ## Packages
 This project uses python = 3.11.1.
