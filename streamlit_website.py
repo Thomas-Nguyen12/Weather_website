@@ -12,8 +12,7 @@ import matplotlib.pyplot as plt
 import shap.explainers._tree
 import joblib
 import pickle
-import lime 
-from lime import lime_tabular
+
 # Custom unpickler to handle missing attribute
 from dotenv import load_dotenv
 load_dotenv()
