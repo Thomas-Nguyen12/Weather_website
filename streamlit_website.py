@@ -14,8 +14,7 @@ import joblib
 import pickle
 import os
 
-from dotenv import load_dotenv
-load_dotenv()
+
 
 # --- Load model and data ---
 model = joblib.load("models/weather_model.pkl")
@@ -30,8 +29,8 @@ emission = joblib.load("data/emission.pkl")
 
 unique = emission.country.unique()
 
-current_api_key = os.environ.get("current_api_key")
-forecast_api_key = os.environ.get("forecast_api_key")
+current_api_key = st.secrets['current_api_key']
+forecast_api_key = st.secrets['forecast_api_key']
 
 # --- Fetch current weather data with error handling ---
 try:
