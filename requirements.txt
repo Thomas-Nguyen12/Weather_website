@@ -1,4 +1,4 @@
-dotenv==1.2.2
+python-dotenv==1.2.2
 bokeh==2.4.3
 category_encoders==2.3.0
 imbalanced_learn==0.12.0
