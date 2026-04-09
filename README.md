@@ -12,11 +12,11 @@ from <b>theweathernetwork.com</b>.
 ## How to use:
 1. <b>Dashboard:</b> this dashboard uses Stremalit to present the data found within <b>streamlit_website.py</b>
 This dashboard can be run using the code:
-> streamlit run streamlit_webbsite.py
+> streamlit run streamlit_website.py
 
 3. <b>models and accuracy metrics:</b> The model, metrics, and explainer (SHAP and LIME) can be found within pickle files:
-Models were created and saved in <b>test_AI.py</b> which can be run using the code:
-> python3 test_AI.py
+Models were created and saved in <b>scripts/test_AI.py</b> which can be run using the code:
+> python3 scripts/test_AI.py
 
 ## Project Structure
 
