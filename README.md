@@ -44,6 +44,7 @@ I wish to build a historical weather database, with the initial data stored with
 This project uses python = 3.11.1.
 The packages for this project can be found within <b>requirements.txt</b> listed here: 
 
+```
 - streamlit==1.30.0
 - pandas==2.0.3
 - requests==2.31.0
@@ -56,7 +57,7 @@ The packages for this project can be found within <b>requirements.txt</b> listed
 - numpy==1.23.5
 - shap==0.45.1
 - streamlit_shap==1.0.2
-
+```
 ## Reference list
 
 data.un.org. (n.d.). UNdata | explorer. [online] Available at: http://data.un.org/Explorer.aspx.
