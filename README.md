@@ -18,25 +18,19 @@ This dashboard can be run using the code:
 Models were created and saved in <b>test_AI.py</b> which can be run using the code:
 > python3 test_AI.py
 
-The pickle files were saved in the following categories: 
+## Project Structure
 
-<u>Model</u>: 
-- weather_model.pkl
 
-<u>Metrics</u>:
-- accuracy.pkl
-- f1.pkl
-- precision.pkl
-- recall.pkl
-- train_accuracy.pkl
+```
+.
+├── collected_data      # test data for future outcomes (see below)
+├── data        # data collected and used within the streamlit_website.py
+├── metrics     # metrics for the models/weather_model.pkl
+├── models      
+└── scripts     # scripts used to collect weather data and train the model
 
-<u>DataFrame</u>:
-- emission.pkl
+```
 
-<u>Explainer</u>:
-- explainer.pkl
-- lime_explainer.pkl
-- weather_shap_values.pkl
 
 ## Data Source
 - Weather data for Eltham was collected using the <b>request</b> module from weatherapi.com 
