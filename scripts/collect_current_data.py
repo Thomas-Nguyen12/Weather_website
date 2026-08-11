@@ -6,12 +6,23 @@ import json
 import os 
 import datetime 
 import sys
+from dotenv import load_dotenv
+import streamlit as st 
+import time
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.append("/Users/thomasnguyen/")
-import api_keys
+# I could 
+load_dotenv() 
+try: 
 
+    weather_api_key = os.getenv("current_api_key") 
+except Exception as e: 
+    print (f"There was an exception: {e}")
 
-current = requests.get(f"http://api.weatherapi.com/v1/current.json?key={api_keys.weather_api_key}&q=London&aqi=yes")
+now = datetime.datetime.now()
+localtime = f"{now.day}-{now.month}-{now.year}"
+
+current = requests.get(f"http://api.weatherapi.com/v1/current.json?key={weather_api_key}&q=London&aqi=yes")
 weather_data = pd.read_json(current.text)
 def clean_data(data):
     """
@@ -20,13 +31,9 @@ def clean_data(data):
     values = [*data.location, *data.current]
     df = pd.Series(values)
     cleaned_values = df.dropna().tolist()
-    
-    # the new column should have the date 
-    new_column = data.loc['localtime'][0]
-
     data[new_column] = cleaned_values
     data.drop(['location', 'current'], axis=1, inplace=True)
-    data.to_csv(f"~/weather_website/collected_data/{new_column}.csv")
+    data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv")
     print (data)
     
 try: 
@@ -37,4 +44,5 @@ except Exception as e:
     print (e) 
     print ("----------------------------")
     
-print ("Finished")
+finally: 
+    print ("Finished")

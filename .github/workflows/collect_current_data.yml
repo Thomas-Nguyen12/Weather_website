@@ -1,0 +1,50 @@
+name: Collect Current Weather Data 
+
+
+
+on:
+
+  schedule:
+    # This will run every day at 12pm 
+    - cron: '0 12 * * *'
+  workflow_dispatch: {} 
+
+  jobs: 
+    collect_weather_data: 
+
+      runs-on: ubuntu-latest 
+
+      steps: 
+        - name: Check out repository 
+          uses: actions/checkout@v4 
+
+        - name: access api keys 
+          env: 
+          # remember to upload the key to the online repository 
+            weather_api_key: ${{ secrets.current_api_key }}
+          run: |
+            echo "The api key is $current_api_key."
+        - name: install uv 
+          uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+
+        - name: Set up Python
+          uses: actions/setup-python@v5 
+          with: 
+            python-version: '3.11.1'
+            cache: 'pip'
+        
+        - name: Set up Dependencies
+          run: |
+            
+            echo "Installing dependencies..." 
+            uv pip install --system -r requirements.txt 
+            uv pip install --system pytest 
+
+        - name: Collect Current Weather data 
+          run: | 
+            echo "Collecting current weather data" 
+            python3 scripts/collect_current_data.py
+            echo "Done" 
+            echo "------------------------------"
+
+          
