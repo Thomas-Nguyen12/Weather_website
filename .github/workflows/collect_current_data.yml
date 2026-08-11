@@ -21,7 +21,7 @@ on:
         - name: access api keys 
           env: 
           # remember to upload the key to the online repository 
-            weather_api_key: ${{ secrets.current_api_key }}
+            weather_api_key: ${{ secrets.CURRENT_API_KEY }}
           run: |
             echo "The api key is $current_api_key."
         - name: install uv 

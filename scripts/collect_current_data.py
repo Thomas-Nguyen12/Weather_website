@@ -14,8 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # I could 
 load_dotenv() 
 try: 
-
-    weather_api_key = os.getenv("current_api_key") 
+    weather_api_key = sys.argv[1]
 except Exception as e: 
     print (f"There was an exception: {e}")
 
@@ -28,14 +27,23 @@ def clean_data(data):
     """
     putting the columns together as they do not overlap.
     """
+
+    """
     values = [*data.location, *data.current]
     df = pd.Series(values)
+    
+
+
     cleaned_values = df.dropna().tolist()
     data[new_column] = cleaned_values
     data.drop(['location', 'current'], axis=1, inplace=True)
     data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv")
     print (data)
-    
+    """
+    print (data.head()) 
+    data.fillna("0", inplace=True) 
+    data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv") 
+
 try: 
     clean_data(weather_data)
 except Exception as e: 
