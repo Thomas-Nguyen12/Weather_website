@@ -23,11 +23,33 @@ Models were created and saved in <b>scripts/test_AI.py</b> which can be run usin
 
 ```
 .
-├── collected_data      # test data for future outcomes (see below)
-├── data        # data collected and used within the streamlit_website.py
-├── metrics     # metrics for the models/weather_model.pkl
-├── models      
-└── scripts     # scripts used to collect weather data and train the model
+├── collected_data    # test data for future outcomes (see below)
+│   ├── 2025-04-21 16:07.csv       
+│   ├── 2025-05-04 22:47.csv
+│   └── 2025-05-19 14:17.csv
+├── data              # data collected and used within the streamlit_website.py
+│   ├── 3_hour_forecast.json
+│   ├── emission.pkl
+│   ├── greenhouse.csv
+│   ├── weather_forecast.csv
+│   └── X_test.pkl
+├── metrics    # metrics for the models/weather_model.pkl
+│   ├── accuracy.pkl
+│   ├── f1.pkl
+│   ├── lime_explainer.pkl
+│   ├── precision.pkl
+│   ├── recall.pkl
+│   ├── train_accuracy.pkl
+│   └── weather_shap_values.pkl
+├── models
+│   └── weather_model.pkl
+├── README.md
+├── requirements.txt
+├── scripts          # scripts used to collect weather data and train the model
+│   ├── collect_current_data.py
+│   ├── test_AI.py
+│   └── world_emission_plot.py
+└── streamlit_website.py      # the main streamlit dashboard
 
 ```
 
