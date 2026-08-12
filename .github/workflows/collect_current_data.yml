@@ -3,7 +3,10 @@ name: Collect Current Weather Data
 
 
 on:
-  push: [main]
+  push: 
+    branches: [main]
+    paths: 
+      - '.github/workflows/collect_current_data.yml'
   schedule:
     # This will run every day at 12pm 
     - cron: '0 12 * * *'
