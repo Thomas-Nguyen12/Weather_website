@@ -3,7 +3,7 @@ name: Collect Current Weather Data
 
 
 on:
-
+  push: [main]
   schedule:
     # This will run every day at 12pm 
     - cron: '0 12 * * *'
