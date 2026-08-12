@@ -1,12 +1,12 @@
 name: Collect Current Weather Data 
 
 
-
 on:
   push: 
     branches: [main]
     paths: 
       - '.github/workflows/collect_current_data.yml'
+      - 'scripts/collect_current_data.py'
   schedule:
     # This will run every day at 12pm 
     - cron: '0 12 * * *'
@@ -50,4 +50,4 @@ jobs:
           echo "Done" 
           echo "------------------------------"
 
-        
+                
