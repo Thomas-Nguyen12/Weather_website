@@ -53,7 +53,7 @@ jobs:
         run: |
           git config user.name "Thomas-Nguyen12" 
           git config user.email "thomas.nguyen3612@gmail.com" 
-          git add path collected_data/*.csv
+          git add collected_data/*.csv
           git commit -m "Added a new file that has today's weather data" || echo "No changes to commit" 
           git push 
 
