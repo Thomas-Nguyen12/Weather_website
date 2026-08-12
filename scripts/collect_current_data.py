@@ -6,13 +6,11 @@ import json
 import os 
 import datetime 
 import sys
-from dotenv import load_dotenv
 import streamlit as st 
 import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # I could 
-load_dotenv() 
 try: 
     weather_api_key = sys.argv[1]
 except Exception as e: 
