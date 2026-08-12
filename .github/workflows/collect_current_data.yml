@@ -49,5 +49,17 @@ jobs:
           python3 scripts/collect_current_data.py ${{ secrets.CURRENT_API_KEY }}
           echo "Done" 
           echo "------------------------------"
+      - name: Commit and Push result 
+        run: |
+          git config user.name "Thomas-Nguyen12" 
+          git config user.email "thomas.nguyen3612@gmail.com" 
+          git add path collected_data/*.csv
+          git commit -m "Added a new file that has today's weather data" || echo "No changes to commit" 
+          git push 
 
-                
+      - name: Report Failure Summary 
+        if: failure() 
+        run: |
+          echo "::error:: workflow failed. There may be some error with the API data \
+          or how the data was formatted. Check the scripts/ folder and the workflow"
+
