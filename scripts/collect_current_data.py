@@ -25,22 +25,20 @@ def clean_data(data):
     """
     putting the columns together as they do not overlap.
     """
-
-    """
-    values = [*data.location, *data.current]
+    print ("----------- DATA")
+    print (data) 
+    values = [*data['location'], *data['current']]
     df = pd.Series(values)
     
 
-
+    print ("----------- Cleaning the dataset")
     cleaned_values = df.dropna().tolist()
-    data[new_column] = cleaned_values
+    data[f"{localtime}"] = cleaned_values
     data.drop(['location', 'current'], axis=1, inplace=True)
-    data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv")
-    print (data)
-    """
+    print ("----------- FORMATTED DATASET") 
     print (data.head()) 
-    data.fillna("0", inplace=True) 
-    data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv") 
+    print ("----------- Saving the dataset") 
+    data.to_csv(f"{BASE_DIR}/collected_data/{localtime}.csv")
 
 try: 
     clean_data(weather_data)
