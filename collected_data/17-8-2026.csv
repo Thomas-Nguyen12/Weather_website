@@ -1,0 +1,45 @@
+,17-8-2026
+name,London
+region,"City of London, Greater London"
+country,United Kingdom
+lat,51.5171
+lon,-0.1062
+tz_id,Europe/London
+localtime_epoch,1786970995
+localtime,2026-08-17 13:49
+last_updated_epoch,1786970700
+last_updated,2026-08-17 13:45
+temp_c,-2.3
+temp_f,27.9
+is_day,1
+condition,"{'text': 'Blizzard', 'icon': '//cdn.weatherapi.com/weather/64x64/day/230.png', 'code': 1117}"
+wind_mph,34.4
+wind_kph,55.4
+wind_degree,261
+wind_dir,W
+pressure_mb,989.0
+pressure_in,29.22
+precip_mm,0.12
+precip_in,0.0
+humidity,71
+cloud,100
+feelslike_c,-11.6
+feelslike_f,11.1
+windchill_c,-11.6
+windchill_f,11.0
+heatindex_c,-2.3
+heatindex_f,27.9
+dewpoint_c,-6.9
+dewpoint_f,19.7
+vis_km,0.0
+vis_miles,0.0
+uv,5.4
+gust_mph,41.9
+gust_kph,67.5
+will_it_rain,0
+chance_of_rain,37
+will_it_snow,0
+chance_of_snow,35
+wetbulb_c,-3.8
+wetbulb_f,25.2
+air_quality,"{'co': 149.0, 'no2': 8.6, 'o3': 66.0, 'so2': 0.7000000000000001, 'pm2_5': 5.2, 'pm10': 7.7, 'us-epa-index': 1, 'gb-defra-index': 1}"
