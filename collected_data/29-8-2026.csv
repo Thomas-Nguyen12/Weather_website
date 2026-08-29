@@ -1,0 +1,45 @@
+,29-8-2026
+name,London
+region,"City of London, Greater London"
+country,United Kingdom
+lat,51.5171
+lon,-0.1062
+tz_id,Europe/London
+localtime_epoch,1788020715
+localtime,2026-08-29 17:25
+last_updated_epoch,1788020100
+last_updated,2026-08-29 17:15
+temp_c,18.0
+temp_f,64.4
+is_day,1
+condition,"{'text': 'Light rain shower', 'icon': '//cdn.weatherapi.com/weather/64x64/day/353.png', 'code': 1240}"
+wind_mph,13.9
+wind_kph,22.3
+wind_degree,193
+wind_dir,SSW
+pressure_mb,1001.0
+pressure_in,29.56
+precip_mm,0.51
+precip_in,0.02
+humidity,85
+cloud,88
+feelslike_c,15.5
+feelslike_f,59.9
+windchill_c,18.0
+windchill_f,64.4
+heatindex_c,18.0
+heatindex_f,64.4
+dewpoint_c,15.5
+dewpoint_f,59.8
+vis_km,10.0
+vis_miles,6.0
+uv,0.1
+gust_mph,28.5
+gust_kph,45.8
+will_it_rain,0
+chance_of_rain,55
+will_it_snow,0
+chance_of_snow,0
+wetbulb_c,16.4
+wetbulb_f,61.5
+air_quality,"{'co': 146.0, 'no2': 7.6, 'o3': 61.0, 'so2': 0.4, 'pm2_5': 5.2, 'pm10': 9.0, 'us-epa-index': 1, 'gb-defra-index': 1}"
