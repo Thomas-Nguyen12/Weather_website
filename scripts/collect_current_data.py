@@ -6,8 +6,6 @@ import json
 import os 
 import datetime 
 import sys
-import streamlit as st 
-import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # I could 
