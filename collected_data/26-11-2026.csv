@@ -1,0 +1,45 @@
+,26-11-2026
+name,London
+region,"City of London, Greater London"
+country,United Kingdom
+lat,51.5171
+lon,-0.1062
+tz_id,Europe/London
+localtime_epoch,1795727240
+localtime,2026-11-26 21:07
+last_updated_epoch,1795726800
+last_updated,2026-11-26 21:00
+temp_c,2.1
+temp_f,35.8
+is_day,0
+condition,"{'text': 'Cloudy', 'icon': '//cdn.weatherapi.com/weather/64x64/night/119.png', 'code': 1006}"
+wind_mph,4.7
+wind_kph,7.6
+wind_degree,115
+wind_dir,ESE
+pressure_mb,1019.0
+pressure_in,30.09
+precip_mm,0.0
+precip_in,0.0
+humidity,83
+cloud,71
+feelslike_c,-0.1
+feelslike_f,31.8
+windchill_c,-0.1
+windchill_f,31.8
+heatindex_c,2.1
+heatindex_f,35.8
+dewpoint_c,-0.4
+dewpoint_f,31.3
+vis_km,10.0
+vis_miles,6.0
+uv,0.0
+gust_mph,11.3
+gust_kph,18.1
+will_it_rain,0
+chance_of_rain,20
+will_it_snow,0
+chance_of_snow,13
+wetbulb_c,1.1
+wetbulb_f,34.0
+air_quality,"{'co': 384.0, 'no2': 59.2, 'o3': 1.0, 'so2': 6.4, 'pm2_5': 21.0, 'pm10': 25.8, 'us-epa-index': 2, 'gb-defra-index': 2}"
